@@ -14,8 +14,8 @@ function LoginPage() {
 
                 {/* Header */}
                 <div className="text-center mb-4">
-                    <h1 className="text-3xl font-bold text-gray-800">Welcome Back👋</h1>
-                    <p className="text-gray-600 mt-2">Sign in to continue to your account</p>
+                    <h1 className="text-3xl font-bold ">Welcome Back👋</h1>
+                    <p className="mt-2">Sign in to continue to your account</p>
                 </div>
 
                 {/* Login Form */}
@@ -23,7 +23,7 @@ function LoginPage() {
 
                 {/* Footer */}
                 <div className="text-center mt-6 pt-6 border-t border-gray-100">
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm">
                         Don't have an account?{" "}
                         <a href="#" className="text-blue-600 hover:underline font-medium">
                             Sign up
