@@ -115,7 +115,7 @@ export function BlogDashboard() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-1 gap-10">
                     {/* Form Section */}
-                    <Card className="shadow-sm">
+                    <Card className="shadow-card border-2 rounded-xl border-gray-200">
                         <CardHeader>
                             <CardTitle className="text-xl font-medium ">
                                 {isEditing ? "Edit Post" : "Create New Post"}
@@ -254,14 +254,14 @@ export function BlogDashboard() {
 
                     {/* Posts List */}
                     {/* Posts List - Newest posts will appear at the top */}
-                    <Card className="shadow-none rounded-xl">
+                    <Card className="shadow-none rounded-xl ">
                         <CardHeader className="pb-4">
                             <CardTitle className="text-xl font-medium">
                                 Published Posts ({posts.length})
                             </CardTitle>
                         </CardHeader>
-                        <CardContent className="pt-6">
-                            <div className="space-y-4">
+                        <CardContent className="pt-6 ">
+                            <div className="space-y-4 grid grid-cols-1 lg:grid-cols-3 gap-6">
                                 {posts.length === 0 ? (
                                     <div className="text-center py-12">
                                         <FileText size={48} className="mx-auto mb-4" />
@@ -316,7 +316,7 @@ export function BlogDashboard() {
 
                                             {post.category && (
                                                 <div className="mt-3">
-                        <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100">
+                        <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-primary text-primary-foreground">
                           <Tag size={10} className="mr-1" />
                             {post.category}
                         </span>
