@@ -83,9 +83,9 @@ export function NavBar() {
                             <Button variant="outline" asChild className="hidden sm:flex">
                                 <Link to="/login">Sign in</Link>
                             </Button>
-                            {/*<Button size="sm" asChild className="hidden sm:flex">*/}
-                            {/*    <Link to="/register">Sign up</Link>*/}
-                            {/*</Button>*/}
+                            <Button asChild className="hidden sm:flex">
+                                <Link to="/signup">Sign up</Link>
+                            </Button>
                             <div className="hidden sm:flex gap-2">
                                 <ThemeToggle/>
                             </div>
@@ -153,11 +153,11 @@ export function NavBar() {
                                         Sign in
                                     </Link>
                                 </Button>
-                                {/*<Button variant="outline" asChild className="w-full">*/}
-                                {/*    <Link to="/register" onClick={() => setIsMenuOpen(false)}>*/}
-                                {/*        Sign up*/}
-                                {/*    </Link>*/}
-                                {/*</Button>*/}
+                                <Button variant="outline" asChild className="w-full">
+                                    <Link to="/singup" onClick={() => setIsMenuOpen(false)}>
+                                        Sign up
+                                    </Link>
+                                </Button>
                                 <ThemeToggle/>
                             </div>
                         )}

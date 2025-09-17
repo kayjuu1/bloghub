@@ -10,6 +10,7 @@ import LoginPage from "@/pages/login-page.tsx";
 import BlogDashboard from "@/pages/dashboard.tsx";
 import {AuthProvider} from "@/context/auth-context.tsx";
 import BlogSection from "@/components/sections/blog-section.tsx";
+import SignUpPage from "@/pages/signup-page.tsx";
 
 
 const router = createHashRouter([
@@ -28,6 +29,10 @@ const router = createHashRouter([
     {
         path: '/login',
         element: <LoginPage/>,
+    },
+    {
+        path: '/signup',
+        element: <SignUpPage/>,
     },
     {
         path: '/dashboard',

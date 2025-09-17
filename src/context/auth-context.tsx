@@ -1,23 +1,26 @@
 // src/contexts/auth-context.tsx
-import React, { createContext, useContext, useState, type ReactNode } from 'react';
+import React, {createContext, type ReactNode, useState} from 'react';
 
 interface User {
     id: string;
     name: string;
     email: string;
     avatar?: string;
+    username?: string;
+    password?: string;
 }
 
 interface AuthContextType {
     user: User | null;
     login: (email: string, password: string) => Promise<boolean>;
+    signup: (email: string, password: string, username: string) => Promise<boolean>;
     logout: () => void;
     isAuthenticated: boolean;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const AuthProvider: React.FC<{ children: ReactNode }> = ({children}) => {
     const [user, setUser] = useState<User | null>(null);
 
     const login = async (email: string, password: string): Promise<boolean> => {
@@ -34,6 +37,26 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         return false;
     };
 
+    const signup = async (email: string, password: string, username: string): Promise<boolean> => {
+        // Simulate API call for signup
+        // In a real app, this would make a request to your backend
+        try {
+            // Simulate successful signup
+            setUser({
+                id: Date.now().toString(), // Generate a temporary ID
+                name: username,
+                email: email,
+                username: username,
+                password: password,
+                avatar: 'https://github.com/shadcn.png' // Default avatar
+            });
+            return true;
+        } catch (error) {
+            console.error('Signup failed:', error);
+            return false;
+        }
+    };
+
     const logout = () => {
         setUser(null);
     };
@@ -41,6 +64,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     return (
         <AuthContext.Provider value={{
             user,
+            signup,
             login,
             logout,
             isAuthenticated: !!user
@@ -50,10 +74,3 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     );
 };
 
-export const useAuth = () => {
-    const context = useContext(AuthContext);
-    if (context === undefined) {
-        throw new Error('useAuth must be used within an AuthProvider');
-    }
-    return context;
-};
