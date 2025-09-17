@@ -1,13 +1,64 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+
+    <title>BlogHub - Your Source for Great Content</title>
+    <meta name="description" content="Discover amazing blog posts on various topics" />
+
+    <!-- Primary SEO -->
+    <meta name="description" content="BlogHub is a modern platform to discover, read, and share insightful articles across technology, design, and more." />
+    <meta name="keywords" content="blog, articles, technology, design, tutorials, BlogHub" />
+    <meta name="author" content="BlogHub" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0b0b0b" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://bloghub-digi.vercel.app/" />
+
+    <!-- Icons / Manifest -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/img.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/img.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/img.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="BlogHub" />
+    <meta property="og:description" content="Discover, read, and share insightful articles on BlogHub." />
+    <meta property="og:image" content="/images/img.png" />
+    <meta property="og:url" content="https://bloghub-digi.vercel.app/#/" />
+    <meta property="og:site_name" content="BlogHub" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="BlogHub" />
+    <meta name="twitter:description" content="Discover, read, and share insightful articles on BlogHub." />
+    <meta name="twitter:image" content="/images/img.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "BlogHub",
+      "url": "https://bloghub-digi.vercel.app/#/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://bloghub-digi.vercel.app/#/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+</head>
+<body>
+<noscript>JavaScript is required to run BlogHub. Please enable it in your browser.</noscript>
+<div id="root"></div>
+<script type="module" src="/src/main.tsx"></script>
+</body>
 </html>

@@ -1,0 +1,20 @@
+{
+  "name": "BlogHub",
+  "short_name": "BlogHub",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0b0b",
+  "theme_color": "#0b0b0b",
+  "icons": [
+    {
+      "src": "/images/img.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/img.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
