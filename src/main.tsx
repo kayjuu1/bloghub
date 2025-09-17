@@ -8,9 +8,9 @@ import HomePage from "@/pages/home-page.tsx";
 import BlogPost from "@/components/BlogPost.tsx";
 import LoginPage from "@/pages/login-page.tsx";
 import BlogDashboard from "@/pages/dashboard.tsx";
-import {AuthProvider} from "@/context/auth-context.tsx";
 import BlogSection from "@/components/sections/blog-section.tsx";
 import SignUpPage from "@/pages/signup-page.tsx";
+import {AuthProvider} from "@/providers/auth-provider.tsx";
 
 
 const router = createHashRouter([
