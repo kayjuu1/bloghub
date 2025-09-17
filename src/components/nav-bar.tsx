@@ -154,7 +154,7 @@ export function NavBar() {
                                     </Link>
                                 </Button>
                                 <Button variant="outline" asChild className="w-full">
-                                    <Link to="/singup" onClick={() => setIsMenuOpen(false)}>
+                                    <Link to="/signup" onClick={() => setIsMenuOpen(false)}>
                                         Sign up
                                     </Link>
                                 </Button>
