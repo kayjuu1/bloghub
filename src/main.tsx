@@ -9,8 +9,10 @@ import BlogPost from "@/components/BlogPost.tsx";
 import LoginPage from "@/pages/login-page.tsx";
 import BlogDashboard from "@/pages/dashboard.tsx";
 import SignUpPage from "@/pages/signup-page.tsx";
-import {AuthProvider} from "@/providers/auth-provider.tsx";
 import BlogPage from "@/pages/blog-page.tsx";
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
+import {AuthProvider} from "@/context/auth-context.tsx";
 
 
 const router = createHashRouter([
@@ -42,11 +44,14 @@ const router = createHashRouter([
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-            <AuthProvider>
-                <RouterProvider router={router}/>
-            </AuthProvider>
-            <Toaster/>
-        </ThemeProvider>
+        <QueryClientProvider client={new QueryClient}>
+            <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+                <AuthProvider>
+                    <RouterProvider router={router}/>
+                    <ReactQueryDevtools initialIsOpen={false}/>
+                </AuthProvider>
+                <Toaster/>
+            </ThemeProvider>
+        </QueryClientProvider>
     </StrictMode>,
 )

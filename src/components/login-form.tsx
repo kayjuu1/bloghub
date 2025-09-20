@@ -10,46 +10,47 @@ import {useAuth} from "@/hooks/useAuth.ts";
 import {toast} from "sonner";
 
 export function LoginForm() {
-    const [username, setUsername] = useState('');
+    const [identifier, setIdentifier] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [errors, setErrors] = useState({username: '', password: ''});
+    const [errors, setErrors] = useState('');
     const navigate = useNavigate();
     const {login} = useAuth();
 
-    const validateForm = () => {
-        const newErrors = {username: '', password: ''};
-        let isValid = true;
-
-        if (!username.trim()) {
-            newErrors.username = 'Username is required';
-            isValid = false;
-        }
-
-        if (!password) {
-            newErrors.password = 'Password is required';
-            isValid = false;
-        } else if (password.length < 6) {
-            newErrors.password = 'Password must be at least 6 characters';
-            isValid = false;
-        }
-
-        setErrors(newErrors);
-        return isValid;
-    };
+    // const validateForm = () => {
+    //     const newErrors = {username: '', password: ''};
+    //     let isValid = true;
+    //
+    //     if (!identifier.trim()) {
+    //         newErrors.username = 'Username is required';
+    //         isValid = false;
+    //     }
+    //
+    //     if (!password) {
+    //         newErrors.password = 'Password is required';
+    //         isValid = false;
+    //     } else if (password.length < 6) {
+    //         newErrors.password = 'Password must be at least 6 characters';
+    //         isValid = false;
+    //     }
+    //
+    //     setErrors(newErrors);
+    //     return isValid;
+    // };
 
     const handleLogin = async (e: FormEvent) => {
         e.preventDefault();
-        if (!validateForm()) return;
         setIsLoading(true);
+        setErrors('');
 
-        const success = await login(username, password);
+        const success = await login(identifier, password);
 
         if (success) {
             navigate('/dashboard'); // Redirect to dashboard after login
         } else {
             toast.error('Invalid username or password.');
+            setErrors('Invalid username or password.');
         }
 
         setIsLoading(false);
@@ -57,24 +58,25 @@ export function LoginForm() {
 
     return (
         <form className="flex flex-col gap-5 w-full" onSubmit={handleLogin}>
+            {errors && (
+                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                    {errors}
+                </div>
+            )}
             <div className="flex flex-col gap-2">
-                <Label htmlFor="username" className="text-sm font-medium text-muted-foreground">
-                    Username
+                <Label htmlFor="identifier" className="text-sm font-medium text-muted-foreground">
+                    Username or Email
                 </Label>
                 <Input
-                    id="username"
+                    id="identifier"
                     type="text"
-                    placeholder="Enter your username"
-                    value={username}
+                    placeholder="Enter your username or email"
+                    value={identifier}
                     onChange={(e) => {
-                        setUsername(e.target.value);
-                        if (errors.username) setErrors({...errors, username: ''});
+                        setIdentifier(e.target.value);
                     }}
                     disabled={isLoading}
                 />
-                {errors.username && (
-                    <p className="text-red-500 text-xs mt-1">{errors.username}</p>
-                )}
             </div>
 
             <div className="flex flex-col gap-2">
@@ -89,7 +91,6 @@ export function LoginForm() {
                         value={password}
                         onChange={(e) => {
                             setPassword(e.target.value);
-                            if (errors.password) setErrors({...errors, password: ''});
                         }}
                         disabled={isLoading}
                     />
@@ -102,9 +103,6 @@ export function LoginForm() {
                         {showPassword ? <EyeOff size={18}/> : <Eye size={18}/>}
                     </button>
                 </div>
-                {errors.password && (
-                    <p className="text-red-500 text-xs mt-1">{errors.password}</p>
-                )}
             </div>
 
             <div className="flex items-center justify-between text-sm mt-2">

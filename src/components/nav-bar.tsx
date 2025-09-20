@@ -4,21 +4,19 @@ import {Button} from "@/components/ui/button";
 import {NavUser} from "@/components/nav-user";
 import {Menu, X} from "lucide-react";
 import {ThemeToggle} from "@/components/theme-toggle.tsx";
+import {useAuthContext} from "@/context/use-auth-context.tsx";
+import {useAuth} from "@/hooks/useAuth.ts";
+
 
 export function NavBar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
+    const {isAuthenticated} = useAuthContext();
+    const {user} = useAuth()
 
-    // Example user data - in a real app, this would come from your auth context
-    const user = {
-        name: "John Doe",
-        email: "john@example.com",
-        avatar: "https://github.com/shadcn.png",
-    };
 
     const handleLogout = () => {
-        setIsLoggedIn(false);
+        localStorage.removeItem("token");
         navigate("/");
     };
 
@@ -52,7 +50,7 @@ export function NavBar() {
                     >
                         Blog
                     </Link>
-                    {isLoggedIn && (
+                    {isAuthenticated && (
                         <Link
                             to="/dashboard"
                             className="text-sm font-medium transition-colors hover:text-primary"
@@ -76,8 +74,15 @@ export function NavBar() {
 
                 {/* Right Side - Auth Buttons or User Menu */}
                 <div className="flex items-center gap-2 sm:gap-4">
-                    {isLoggedIn ? (
-                        <NavUser user={user} onLogout={handleLogout}/>
+                    {isAuthenticated ? (
+                        <>
+                            <div className="hidden md:flex">
+                                <NavUser/>
+                            </div>
+                            <div className="hidden sm:flex gap-2">
+                                <ThemeToggle/>
+                            </div>
+                        </>
                     ) : (
                         <div className="flex items-center gap-2">
                             <Button variant="outline" asChild className="hidden sm:flex">
@@ -123,7 +128,7 @@ export function NavBar() {
                         >
                             Blog
                         </Link>
-                        {isLoggedIn && (
+                        {isAuthenticated && (
                             <Link
                                 to="/dashboard"
                                 className="block py-2 text-sm font-medium"
@@ -146,7 +151,37 @@ export function NavBar() {
                         >
                             Contact
                         </Link>
-                        {!isLoggedIn && (
+
+                        {isAuthenticated && user ? (
+                            <div className="pt-4 space-y-3 border-t">
+                                <div className="flex items-center justify-between py-2">
+                                    <div className="flex items-center gap-3">
+                                        {user.avatar && (
+                                            <img
+                                                src={user.avatar}
+                                                alt={user.name || user.username || 'User'}
+                                                className="h-8 w-8 rounded-full"
+                                            />
+                                        )}
+                                        <div>
+                                            <p className="text-sm font-medium">{user.name || user.username || 'User'}</p>
+                                            <p className="text-xs text-muted-foreground">{user.email || 'No email'}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <Button
+                                    variant="outline"
+                                    className="w-full"
+                                    onClick={() => {
+                                        handleLogout();
+                                        setIsMenuOpen(false);
+                                    }}
+                                >
+                                    Logout
+                                </Button>
+                                <ThemeToggle/>
+                            </div>
+                        ) : (
                             <div className="pt-4 space-y-3 border-t">
                                 <Button asChild className="w-full">
                                     <Link to="/login" onClick={() => setIsMenuOpen(false)}>
