@@ -13,6 +13,7 @@ import BlogPage from "@/pages/blog-page.tsx";
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
 import {AuthProvider} from "@/context/auth-context.tsx";
+import ForgotPassword from "@/pages/forgot-password.tsx";
 
 
 const router = createHashRouter([
@@ -37,6 +38,10 @@ const router = createHashRouter([
         element: <SignUpPage/>,
     },
     {
+        path: '/resetPassword',
+        element: <ForgotPassword/>,
+    },
+    {
         path: '/dashboard',
         element: <BlogDashboard/>,
     }
@@ -50,7 +55,7 @@ createRoot(document.getElementById('root')!).render(
                     <RouterProvider router={router}/>
                     <ReactQueryDevtools initialIsOpen={false}/>
                 </AuthProvider>
-                <Toaster/>
+                <Toaster richColors/>
             </ThemeProvider>
         </QueryClientProvider>
     </StrictMode>,
