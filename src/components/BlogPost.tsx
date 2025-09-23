@@ -3,7 +3,7 @@ import {ArrowLeft, Calendar, Clock, Tag} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {BlogPosts} from "@/types/blogposts";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
-import {NavBar} from "@/components/nav-bar.tsx";
+import NavBar from "@/components/nav-bar.tsx";
 
 const BlogPost = () => {
     const {id} = useParams<{ id: string }>();

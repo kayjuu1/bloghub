@@ -6,7 +6,7 @@ import {Label} from "@/components/ui/label";
 import {Textarea} from "@/components/ui/textarea";
 import {Calendar, Clock, Edit, FileText, Plus, Save, Tag, Trash2, User} from "lucide-react";
 import {type BlogPost, BlogPosts} from "@/types/blogposts";
-import {NavBar} from "@/components/nav-bar.tsx";
+import NavBar from "@/components/nav-bar.tsx";
 import {toast} from "sonner";
 
 export function BlogDashboard() {

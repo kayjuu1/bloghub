@@ -48,6 +48,7 @@ export function LoginForm() {
 
         if (success) {
             navigate('/dashboard'); // Redirect to dashboard after login
+            toast.success('Logged in successfully!');
         } else {
             toast.error('Invalid username or password.');
             setErrors('Invalid username or password.');

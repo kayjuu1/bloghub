@@ -14,21 +14,34 @@ import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
 import {AuthProvider} from "@/context/auth-context.tsx";
 import ForgotPassword from "@/pages/forgot-password.tsx";
+import RootLayout from "@/components/layout/root-layout.tsx";
 
+const queryClient = new QueryClient();
 
 const router = createHashRouter([
     {
         path: '/',
-        element: <HomePage/>,
+        element: <RootLayout/>, // Use layout for routes that should have toolbar
+        children: [
+            {
+                path: '/',
+                element: <HomePage/>,
+            },
+            {
+                path: '/blog',
+                element: <BlogPage/>,
+            },
+            {
+                path: '/blog/:id',
+                element: <BlogPost/>,
+            },
+            {
+                path: '/dashboard',
+                element: <BlogDashboard/>,
+            }
+        ]
     },
-    {
-        path: '/blog',
-        element: <BlogPage/>,
-    },
-    {
-        path: '/blog/:id',
-        element: <BlogPost/>,
-    },
+    // Auth routes without toolbar
     {
         path: '/login',
         element: <LoginPage/>,
@@ -40,16 +53,12 @@ const router = createHashRouter([
     {
         path: '/resetPassword',
         element: <ForgotPassword/>,
-    },
-    {
-        path: '/dashboard',
-        element: <BlogDashboard/>,
     }
 ]);
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <QueryClientProvider client={new QueryClient}>
+        <QueryClientProvider client={queryClient}>
             <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
                 <AuthProvider>
                     <RouterProvider router={router}/>

@@ -1,4 +1,4 @@
-import {NavBar} from "@/components/nav-bar.tsx";
+import NavBar from "@/components/nav-bar.tsx";
 import BlogSection from "@/components/sections/blog-section.tsx";
 
 
